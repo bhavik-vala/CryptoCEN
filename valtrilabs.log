@@ -1,0 +1,315 @@
+2026-02-07 23:58:08,528 | ERROR | valtrilabs.rag | Failed to init ChromaDB client
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\rag_system.py", line 20, in __init__
+    self.client = chromadb.Client(settings=settings)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\__init__.py", line 334, in Client
+    return ClientCreator(tenant=tenant, database=database, settings=settings)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\client.py", line 58, in __init__
+    super().__init__(settings=settings)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\shared_system_client.py", line 19, in __init__
+    SharedSystemClient._create_system_if_not_exists(self._identifier, settings)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\shared_system_client.py", line 26, in _create_system_if_not_exists
+    new_system = System(settings)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\config.py", line 358, in __init__
+    if settings[key] is not None:
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\config.py", line 292, in __getitem__
+    raise ValueError(LEGACY_ERROR)
+ValueError: [91mYou are using a deprecated configuration of Chroma.
+
+[94mIf you do not have data you wish to migrate, you only need to change how you construct
+your Chroma client. Please see the "New Clients" section of https://docs.trychroma.com/deployment/migration.
+________________________________________________________________________________________________
+
+If you do have data you wish to migrate, we have a migration tool you can use in order to
+migrate your data to the new Chroma architecture.
+Please `pip install chroma-migrate` and run `chroma-migrate` to migrate your data and then
+change how you construct your Chroma client.
+
+See https://docs.trychroma.com/deployment/migration for more information or join our discord at https://discord.gg/8g5FESbj for help![0m
+2026-02-08 00:02:20,350 | INFO | valtrilabs | Building knowledge base from PDFs
+2026-02-08 00:02:20,355 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\1 new message.pdf
+2026-02-08 00:02:20,699 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\10 Advantages of Hiring A Virtual Assistant - viawork.pdf
+2026-02-08 00:02:20,799 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\10 Benefits of Hiring a Top Virtual Assistant – TestGorilla.pdf
+2026-02-08 00:02:21,638 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\10 Benefits of Hiring a Virtual Assistant — Boost Productivity and Scale Your Business _ by Aristosourcing _ Medium.pdf
+2026-02-08 00:02:21,700 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11 Benefits Of Hiring A Virtual Assistant_ You Won_t Regret It • Mrs. Smith Assist.pdf
+2026-02-08 00:02:21,852 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11 Benefits of Hiring Virtual Assistants For Busy Professionals - StaffingSolutions.io.pdf
+2026-02-08 00:02:22,294 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11 Proven Benefits of Hiring a Virtual Assistant - Prialto.pdf
+2026-02-08 00:02:22,420 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11+ Tasks to Outsource to Virtual Assistants for Outreach.pdf
+2026-02-08 00:02:22,490 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\133 Tasks You Can Outsource to a Virtual Assistant 2025.pdf
+2026-02-08 00:02:22,805 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\14 Virtual Assistant Skills To Have on Your Resume - Upwork.pdf
+2026-02-08 00:02:22,947 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\151 Virtual Assistant Tasks You Can Delegate Without a Second Thought.pdf
+2026-02-08 00:02:23,237 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\16 Ways a Virtual Assistant Can Help Your Small Business Grow.pdf
+2026-02-08 00:02:23,307 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\19 Top Virtual Assistant Skills to Get Hired.pdf
+2026-02-08 00:02:23,373 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\40 Common Virtual Assistant Tasks You Should Be Outsourcing this 2026.pdf
+2026-02-08 00:02:23,534 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\5 Benefits of Hiring a Virtual Assistant - Lawpath.pdf
+2026-02-08 00:02:23,596 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\5 Ways A Virtual Assistant Can Make You More Productive _ U.S. Small Business Administration.pdf
+2026-02-08 00:02:23,659 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\50 Tasks You Could Be Outsourcing to a Virtual Assistant — Smart Virtual Assistant.pdf
+2026-02-08 00:02:23,719 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\60 Tasks You Can Outsource to a Virtual Assistant Team.pdf
+2026-02-08 00:02:23,807 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\7 Incredible Benefits of Virtual Assistants to Grow Your Business.pdf
+2026-02-08 00:02:24,228 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Benefits Of Hiring A Virtual Assistant in 2024 _ CloudHire.pdf
+2026-02-08 00:02:24,330 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Benefits of Hiring a Virtual Assistant_ Comprehensive Guide _ Somewhere.pdf
+2026-02-08 00:02:24,572 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Benefits of Hiring Virtual Assistants _ Managed service.pdf
+2026-02-08 00:02:24,730 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Everyday Tasks That You Can Outsource to a Virtual Assistant.pdf
+2026-02-08 00:02:24,841 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How Can a Virtual Assistant Help Grow Your Business_.pdf
+2026-02-08 00:02:25,042 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How can Virtual Assistants help you scale your business_.pdf
+2026-02-08 00:02:25,237 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How to Outsource a Virtual Assistant_.pdf
+2026-02-08 00:02:25,312 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How Virtual Assistants Can Revolutionize Your Productivity and Business Growth _ by Aristosourcing _ Medium.pdf
+2026-02-08 00:02:25,398 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Let a Virtual Assistant Help Grow Your Business.pdf
+2026-02-08 00:02:25,435 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Outsource To A Virtual Assistant In 2023 _ 24x7 Direct.pdf
+2026-02-08 00:02:25,474 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Outsource to a Virtual Assistant, Have the Support of an Organization.pdf
+2026-02-08 00:02:25,568 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Pros and cons of being a virtual assistant _ VA Training _ Prime PA.pdf
+2026-02-08 00:02:25,623 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Simplify Your Work_ Using Virtual Assistants to Grow Your Business —The Virtual Gurus Difference – Virtual Gurus.pdf
+2026-02-08 00:02:25,737 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Tasks to Outsource to a Virtual Assistant - What to Delegate.pdf
+2026-02-08 00:02:25,857 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\The Benefits Of Having A Virtual Assistant _ Expansive.pdf
+2026-02-08 00:02:26,050 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\The Benefits of Hiring a Virtual Assistant.pdf
+2026-02-08 00:02:26,181 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\The Pros and Cons of Being a Virtual Assistant » Desire to Done.pdf
+2026-02-08 00:02:26,231 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Benefits of Hiring a Virtual Assistant.pdf
+2026-02-08 00:02:26,314 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Benefits of Virtual Assistant Services for Business.pdf
+2026-02-08 00:02:26,897 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Tasks to Outsource to a Virtual Assistant - There is Talent.pdf
+2026-02-08 00:02:26,981 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Tasks You Can Outsource to a Virtual Assistant in 2025.pdf
+2026-02-08 00:02:27,021 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top Executive Virtual Assistant Skills for 2025 _ Hire Your EVA.pdf
+2026-02-08 00:02:27,084 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top Tasks to Immediately Outsource to a Virtual Assistant in 2025.pdf
+2026-02-08 00:02:27,362 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top Tasks to Outsource to Offshore Virtual Assistants.pdf
+2026-02-08 00:02:27,566 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Unlocking Efficiency_ Top Benefits of Hiring a Virtual Assistant - Wise.pdf
+2026-02-08 00:02:27,719 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Virtual Admin Assistant Duties Guide _ RemoteReps.pdf
+2026-02-08 00:02:41,067 | INFO | valtrilabs.rag | Built vector store with 45 documents
+2026-02-08 00:02:41,069 | INFO | valtrilabs.rag | ChromaDB persisted to data/chroma_db (automatic)
+2026-02-08 00:03:05,467 | INFO | valtrilabs.ai_provider | AI provider set to: claude
+2026-02-08 00:03:05,512 | DEBUG | valtrilabs.content_generator | Prompt length: 130512
+2026-02-08 00:05:31,120 | INFO | valtrilabs.ai_provider | AI provider set to: claude
+2026-02-08 00:05:31,352 | DEBUG | valtrilabs.content_generator | Prompt length: 36271
+2026-02-08 00:06:22,224 | INFO | valtrilabs.ai_provider | AI provider set to: claude
+2026-02-08 00:06:22,484 | DEBUG | valtrilabs.content_generator | Prompt length: 137403
+2026-02-08 00:07:07,055 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 00:07:07,326 | DEBUG | valtrilabs.content_generator | Prompt length: 123374
+2026-02-08 00:07:07,862 | WARNING | valtrilabs.ai_provider | Failed to init claude provider: Client.__init__() got an unexpected keyword argument 'proxies'. Falling back to Google.
+2026-02-08 00:07:16,856 | ERROR | valtrilabs.ai_provider | AI generation failed for provider google
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\ai_provider.py", line 97, in generate
+    resp = model.generate_content(contents=prompt)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 830, in generate_content
+    response = rpc(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\google\api_core\grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.InvalidArgument: 400 API key not valid. Please pass a valid API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key not valid. Please pass a valid API key."
+]
+2026-02-08 00:15:59,687 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 00:15:59,883 | DEBUG | valtrilabs.content_generator | Prompt length: 128656
+2026-02-08 00:16:00,385 | WARNING | valtrilabs.ai_provider | Failed to init claude provider: Client.__init__() got an unexpected keyword argument 'proxies'. Falling back to Google.
+2026-02-08 00:17:14,187 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 00:17:14,746 | DEBUG | valtrilabs.content_generator | Prompt length: 130519
+2026-02-08 00:17:29,939 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 00:17:29,940 | INFO | valtrilabs.linkedin | Test mode enabled — preview only
+Myth: "Virtual assistants are just glorified secretaries who handle basic tasks."
+
+Reality check: This couldn't be further from the truth.
+
+Today's virtual admin assistants are strategic powerhouses who can transform your entire business operation. They're not just handling emails and scheduling—they're driving growth, managing complex projects, and becoming indispensable partners in your success.
+
+**The Real Impact of Modern VAAs**
+
+Recent case studies show that businesses leveraging skilled virtual assistants report 30-40% productivity gains. These professionals bring specialized expertise across industries—from HIPAA-compliant healthcare administration to complex e-commerce inventory management.
+
+**Beyond Basic Admin Work**
+
+Modern VAAs excel at:
+- Advanced CRM management and lead nurturing
+- Multi-platform social media strategy execution  
+- Financial reconciliation and expense tracking
+- Project coordination using sophisticated tools like Asana and HubSpot
+- Data analysis and reporting that drives decision-making
+
+**The Strategic Advantage**
+
+What sets today's VAAs apart is their proactive approach. They anticipate needs, identify bottlenecks, and suggest process improvements. Many hold certifications in project management, digital marketing, and specialized software platforms.
+
+**Your Next Step**
+
+Ready to experience the difference? Start by clearly defining your specific needs, then look for VAAs with proven remote experience and industry-relevant certifications.
+
+The myth of the "basic assistant" is dead. The era of strategic virtual partnerships is here.
+
+**What's your biggest operational challenge that a skilled VAA could solve?**
+
+#VirtualAssistant #ProductivityHacks #BusinessGrowth #RemoteWork #DigitalTransformation
+2026-02-08 00:17:29,943 | INFO | valtrilabs | Posting result: {'status': 'preview', 'content': 'Myth: "Virtual assistants are just glorified secretaries who handle basic tasks."\n\nReality check: This couldn\'t be further from the truth.\n\nToday\'s virtual admin assistants are strategic powerhouses who can transform your entire business operation. They\'re not just handling emails and scheduling—they\'re driving growth, managing complex projects, and becoming indispensable partners in your success.\n\n**The Real Impact of Modern VAAs**\n\nRecent case studies show that businesses leveraging skilled virtual assistants report 30-40% productivity gains. These professionals bring specialized expertise across industries—from HIPAA-compliant healthcare administration to complex e-commerce inventory management.\n\n**Beyond Basic Admin Work**\n\nModern VAAs excel at:\n- Advanced CRM management and lead nurturing\n- Multi-platform social media strategy execution  \n- Financial reconciliation and expense tracking\n- Project coordination using sophisticated tools like Asana and HubSpot\n- Data analysis and reporting that drives decision-making\n\n**The Strategic Advantage**\n\nWhat sets today\'s VAAs apart is their proactive approach. They anticipate needs, identify bottlenecks, and suggest process improvements. Many hold certifications in project management, digital marketing, and specialized software platforms.\n\n**Your Next Step**\n\nReady to experience the difference? Start by clearly defining your specific needs, then look for VAAs with proven remote experience and industry-relevant certifications.\n\nThe myth of the "basic assistant" is dead. The era of strategic virtual partnerships is here.\n\n**What\'s your biggest operational challenge that a skilled VAA could solve?**\n\n#VirtualAssistant #ProductivityHacks #BusinessGrowth #RemoteWork #DigitalTransformation'}
+2026-02-08 14:42:27,905 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 14:42:28,431 | DEBUG | valtrilabs.content_generator | Prompt length: 123381
+2026-02-08 14:42:41,383 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 14:42:42,362 | ERROR | valtrilabs.linkedin | Failed to post to LinkedIn
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 45, in post_text_linkedin
+    r.raise_for_status()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://api.linkedin.com/v2/ugcPosts
+2026-02-08 14:42:42,452 | ERROR | valtrilabs | Failed to post
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\main.py", line 44, in create_and_post
+    res = poster.post(post['content'])
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 77, in post
+    return self.post_text_linkedin(text)
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 45, in post_text_linkedin
+    r.raise_for_status()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://api.linkedin.com/v2/ugcPosts
+2026-02-08 14:42:53,310 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 14:42:53,356 | DEBUG | valtrilabs.content_generator | Prompt length: 137404
+2026-02-08 14:43:05,000 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 14:43:05,957 | ERROR | valtrilabs.linkedin | Failed to post to LinkedIn
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 45, in post_text_linkedin
+    r.raise_for_status()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://api.linkedin.com/v2/ugcPosts
+2026-02-08 14:43:05,958 | ERROR | valtrilabs | Failed to post
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\main.py", line 44, in create_and_post
+    res = poster.post(post['content'])
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 77, in post
+    return self.post_text_linkedin(text)
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 45, in post_text_linkedin
+    r.raise_for_status()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://api.linkedin.com/v2/ugcPosts
+2026-02-08 14:43:12,153 | INFO | valtrilabs | Building knowledge base from PDFs
+2026-02-08 14:43:12,157 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\1 new message.pdf
+2026-02-08 14:43:12,491 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\10 Advantages of Hiring A Virtual Assistant - viawork.pdf
+2026-02-08 14:43:12,559 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\10 Benefits of Hiring a Top Virtual Assistant – TestGorilla.pdf
+2026-02-08 14:43:13,144 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\10 Benefits of Hiring a Virtual Assistant — Boost Productivity and Scale Your Business _ by Aristosourcing _ Medium.pdf
+2026-02-08 14:43:13,213 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11 Benefits Of Hiring A Virtual Assistant_ You Won_t Regret It • Mrs. Smith Assist.pdf
+2026-02-08 14:43:13,316 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11 Benefits of Hiring Virtual Assistants For Busy Professionals - StaffingSolutions.io.pdf
+2026-02-08 14:43:13,734 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11 Proven Benefits of Hiring a Virtual Assistant - Prialto.pdf
+2026-02-08 14:43:13,829 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\11+ Tasks to Outsource to Virtual Assistants for Outreach.pdf
+2026-02-08 14:43:13,902 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\133 Tasks You Can Outsource to a Virtual Assistant 2025.pdf
+2026-02-08 14:43:14,162 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\14 Virtual Assistant Skills To Have on Your Resume - Upwork.pdf
+2026-02-08 14:43:14,289 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\151 Virtual Assistant Tasks You Can Delegate Without a Second Thought.pdf
+2026-02-08 14:43:14,499 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\16 Ways a Virtual Assistant Can Help Your Small Business Grow.pdf
+2026-02-08 14:43:15,238 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\19 Top Virtual Assistant Skills to Get Hired.pdf
+2026-02-08 14:43:15,303 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\40 Common Virtual Assistant Tasks You Should Be Outsourcing this 2026.pdf
+2026-02-08 14:43:15,610 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\5 Benefits of Hiring a Virtual Assistant - Lawpath.pdf
+2026-02-08 14:43:15,674 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\5 Ways A Virtual Assistant Can Make You More Productive _ U.S. Small Business Administration.pdf
+2026-02-08 14:43:15,731 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\50 Tasks You Could Be Outsourcing to a Virtual Assistant — Smart Virtual Assistant.pdf
+2026-02-08 14:43:16,084 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\60 Tasks You Can Outsource to a Virtual Assistant Team.pdf
+2026-02-08 14:43:16,178 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\7 Incredible Benefits of Virtual Assistants to Grow Your Business.pdf
+2026-02-08 14:43:16,668 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Benefits Of Hiring A Virtual Assistant in 2024 _ CloudHire.pdf
+2026-02-08 14:43:16,763 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Benefits of Hiring a Virtual Assistant_ Comprehensive Guide _ Somewhere.pdf
+2026-02-08 14:43:16,930 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Benefits of Hiring Virtual Assistants _ Managed service.pdf
+2026-02-08 14:43:17,051 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Everyday Tasks That You Can Outsource to a Virtual Assistant.pdf
+2026-02-08 14:43:17,456 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How Can a Virtual Assistant Help Grow Your Business_.pdf
+2026-02-08 14:43:17,633 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How can Virtual Assistants help you scale your business_.pdf
+2026-02-08 14:43:17,773 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How to Outsource a Virtual Assistant_.pdf
+2026-02-08 14:43:18,559 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\How Virtual Assistants Can Revolutionize Your Productivity and Business Growth _ by Aristosourcing _ Medium.pdf
+2026-02-08 14:43:18,625 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Let a Virtual Assistant Help Grow Your Business.pdf
+2026-02-08 14:43:18,675 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Outsource To A Virtual Assistant In 2023 _ 24x7 Direct.pdf
+2026-02-08 14:43:18,715 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Outsource to a Virtual Assistant, Have the Support of an Organization.pdf
+2026-02-08 14:43:18,804 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Pros and cons of being a virtual assistant _ VA Training _ Prime PA.pdf
+2026-02-08 14:43:18,997 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Simplify Your Work_ Using Virtual Assistants to Grow Your Business —The Virtual Gurus Difference – Virtual Gurus.pdf
+2026-02-08 14:43:19,092 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Tasks to Outsource to a Virtual Assistant - What to Delegate.pdf
+2026-02-08 14:43:19,197 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\The Benefits Of Having A Virtual Assistant _ Expansive.pdf
+2026-02-08 14:43:19,480 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\The Benefits of Hiring a Virtual Assistant.pdf
+2026-02-08 14:43:19,590 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\The Pros and Cons of Being a Virtual Assistant » Desire to Done.pdf
+2026-02-08 14:43:19,663 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Benefits of Hiring a Virtual Assistant.pdf
+2026-02-08 14:43:20,123 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Benefits of Virtual Assistant Services for Business.pdf
+2026-02-08 14:43:20,572 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Tasks to Outsource to a Virtual Assistant - There is Talent.pdf
+2026-02-08 14:43:20,642 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top 10 Tasks You Can Outsource to a Virtual Assistant in 2025.pdf
+2026-02-08 14:43:20,687 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top Executive Virtual Assistant Skills for 2025 _ Hire Your EVA.pdf
+2026-02-08 14:43:20,751 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top Tasks to Immediately Outsource to a Virtual Assistant in 2025.pdf
+2026-02-08 14:43:20,990 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Top Tasks to Outsource to Offshore Virtual Assistants.pdf
+2026-02-08 14:43:21,228 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Unlocking Efficiency_ Top Benefits of Hiring a Virtual Assistant - Wise.pdf
+2026-02-08 14:43:21,451 | INFO | valtrilabs.pdf_processor | Processing PDF: data\pdfs\Virtual Admin Assistant Duties Guide _ RemoteReps.pdf
+2026-02-08 14:43:31,423 | INFO | valtrilabs.rag | Built vector store with 45 documents
+2026-02-08 14:43:31,424 | INFO | valtrilabs.rag | ChromaDB persisted to data/chroma_db (automatic)
+2026-02-08 15:29:05,731 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 15:29:06,193 | DEBUG | valtrilabs.content_generator | Prompt length: 36271
+2026-02-08 15:29:17,158 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 15:29:17,159 | INFO | valtrilabs.linkedin | Test mode enabled — preview only
+Sarah stared at her overflowing inbox at 11 PM, knowing she'd be here until midnight again. Sound familiar?
+
+Last month, I met a business owner who transformed her entire operation with one simple decision. She was drowning in administrative tasks, missing client calls, and watching opportunities slip away because she couldn't keep up.
+
+Then she hired her first virtual assistant.
+
+Within 30 days, her email response time dropped from 48 hours to under 4 hours. Her calendar was organized, her social media was consistently updated, and she finally had time to focus on what she did best – growing her business.
+
+The numbers speak for themselves: businesses typically save 40-60% on operational costs when using virtual assistants instead of full-time employees. That's $35,000-$60,000 annually for most companies.
+
+But here's what really matters – it's not just about the money saved. It's about reclaiming your time and energy for high-value activities that only you can do.
+
+Virtual assistants can handle everything from email management and calendar scheduling to customer service and social media management. They work remotely, offer flexible arrangements, and bring specialized skills without the overhead of traditional employees.
+
+**Ready to get your evenings back?** Start by listing three tasks that consume your time but don't require your expertise. Those are perfect candidates for delegation.
+
+What's one administrative task you'd love to hand off today?
+
+#VirtualAssistant #BusinessGrowth #Productivity #SmallBusiness #Outsourcing
+2026-02-08 15:29:17,159 | INFO | valtrilabs | Posting result: {'status': 'preview', 'content': "Sarah stared at her overflowing inbox at 11 PM, knowing she'd be here until midnight again. Sound familiar?\n\nLast month, I met a business owner who transformed her entire operation with one simple decision. She was drowning in administrative tasks, missing client calls, and watching opportunities slip away because she couldn't keep up.\n\nThen she hired her first virtual assistant.\n\nWithin 30 days, her email response time dropped from 48 hours to under 4 hours. Her calendar was organized, her social media was consistently updated, and she finally had time to focus on what she did best – growing her business.\n\nThe numbers speak for themselves: businesses typically save 40-60% on operational costs when using virtual assistants instead of full-time employees. That's $35,000-$60,000 annually for most companies.\n\nBut here's what really matters – it's not just about the money saved. It's about reclaiming your time and energy for high-value activities that only you can do.\n\nVirtual assistants can handle everything from email management and calendar scheduling to customer service and social media management. They work remotely, offer flexible arrangements, and bring specialized skills without the overhead of traditional employees.\n\n**Ready to get your evenings back?** Start by listing three tasks that consume your time but don't require your expertise. Those are perfect candidates for delegation.\n\nWhat's one administrative task you'd love to hand off today?\n\n#VirtualAssistant #BusinessGrowth #Productivity #SmallBusiness #Outsourcing"}
+2026-02-08 15:31:27,574 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 15:31:27,786 | DEBUG | valtrilabs.content_generator | Prompt length: 123380
+2026-02-08 15:31:41,293 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 15:31:42,607 | INFO | valtrilabs.linkedin | Posted to LinkedIn: {"id":"urn:li:share:7426203583974522880"}
+2026-02-08 15:31:42,609 | INFO | valtrilabs | Posting result: {'status': 'posted', 'response': {'id': 'urn:li:share:7426203583974522880'}}
+2026-02-08 15:37:07,911 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 15:37:08,391 | DEBUG | valtrilabs.content_generator | Prompt length: 130511
+2026-02-08 15:37:19,035 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 15:37:20,037 | ERROR | valtrilabs.linkedin | LinkedIn API error: 403 - {"status":403,"serviceErrorCode":100,"code":"ACCESS_DENIED","message":"Field Value validation failed in REQUEST_BODY: Data Processing Exception while processing fields [/author]"}
+2026-02-08 15:37:20,037 | ERROR | valtrilabs | Failed to post
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\main.py", line 44, in create_and_post
+    res = poster.post(post['content'])
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 82, in post
+    return self.post_text_linkedin(text)
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 46, in post_text_linkedin
+    r.raise_for_status()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.linkedin.com/v2/ugcPosts
+2026-02-08 15:39:08,795 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 15:39:09,424 | DEBUG | valtrilabs.content_generator | Prompt length: 36278
+2026-02-08 15:39:20,887 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 15:39:21,810 | ERROR | valtrilabs.linkedin | LinkedIn API error: 403 - {"status":403,"serviceErrorCode":100,"code":"ACCESS_DENIED","message":"Unpermitted fields present in REQUEST_BODY: Data Processing Exception while processing fields [/organizationalAuthors]"}
+2026-02-08 15:39:21,811 | ERROR | valtrilabs | Failed to post
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\main.py", line 44, in create_and_post
+    res = poster.post(post['content'])
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 101, in post
+    return self.post_text_linkedin(text)
+  File "C:\Users\bhavi\Documents\Linkedin Post\linkedin_poster.py", line 65, in post_text_linkedin
+    r.raise_for_status()
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.linkedin.com/v2/ugcPosts
+2026-02-08 15:40:11,021 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 15:40:11,253 | DEBUG | valtrilabs.content_generator | Prompt length: 130512
+2026-02-08 15:40:22,868 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 15:40:24,463 | INFO | valtrilabs.linkedin | Posted to LinkedIn: {'id': 'urn:li:share:7426205771421335552'}
+2026-02-08 15:40:24,464 | INFO | valtrilabs | Posting result: {'status': 'posted', 'response': {'id': 'urn:li:share:7426205771421335552'}}
+2026-02-08 16:27:21,891 | INFO | valtrilabs.ai_provider | AI provider set to: claude (env=claude, param=None)
+2026-02-08 16:27:22,373 | DEBUG | valtrilabs.content_generator | Prompt length: 36274
+2026-02-08 16:27:33,528 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-08 16:27:35,359 | INFO | valtrilabs.linkedin | Posted to LinkedIn: {'id': 'urn:li:share:7426217645131255808'}
+2026-02-08 16:27:35,364 | INFO | valtrilabs | Posting result: {'status': 'posted', 'response': {'id': 'urn:li:share:7426217645131255808'}}
