@@ -29,14 +29,28 @@ class ContentGenerator:
         profile = config.PROFILES.get(profile_key, config.PROFILES[config.DEFAULT_PROFILE])
         company_name = profile["company_info"]["name"]
         brand_tone = config.BRAND_VOICE.get("tone", "Professional")
+        
+        # Enhanced prompt for technical, educational content
         prompt = (
-            f"You are a professional content writer for {company_name}."
-            f" Use brand voice: {brand_tone}.\n"
+            f"You are a technical educator and thought leader in crypto and blockchain.\n"
+            f"Brand voice: {brand_tone}, authoritative, insightful, teach-first.\n"
             f"Theme: {theme}. Format: {fmt}.\n"
-            "Requirements: Create a LinkedIn post between 150-300 words. Strong hook in first 2 lines, short paragraphs, clear CTA, and 3-5 hashtags. Not salesy. Actionable.\n"
-            "Context: Use the following extracted context to ground factual statements:\n"
+            f"\n"
+            f"CRITICAL INSTRUCTIONS:\n"
+            f"1. LEAD with a concrete technical insight (first line). Not a question, not generic.\n"
+            f"2. EDUCATE: Explain the concept clearly. Use data-backed insights.\n"
+            f"3. GROUND claims in the provided context/data (actual mechanics, standards).\n"
+            f"4. PROVIDE VALUE: Why traders/builders/users should care about this.\n"
+            f"5. END with a thoughtful CTA: Invite discussion on implications or deeper aspects.\n"
+            f"6. TONE: Expert, educational, not salesy. Assume readers are traders/developers.\n"
+            f"\n"
+            f"Length: 200-400 words. Structure: Hook → Technical explanation → Why it matters → CTA\n"
+            f"Hashtags: 4-6 technical/specific tags (e.g., #BlockchainTech, #FuturesTrading, #Custody)\n"
+            f"\n"
+            f"CONTEXT DATA (ground claims here):\n"
             f"{ctx_text}\n"
-            "Produce the post only (no metadata). At the end include a line of hashtags separated by spaces."
+            f"\n"
+            f"Output: Plain text post with hook, body, CTA, and hashtags (space-separated)."
         )
         return prompt
 
