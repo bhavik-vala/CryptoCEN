@@ -487,3 +487,68 @@ What's your current wallet architecture? Are you properly segmenting risk betwee
 2026-02-08 18:07:39,831 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
 2026-02-08 18:07:40,989 | INFO | valtrilabs.linkedin | Posted to LinkedIn: {'id': 'urn:li:share:7426242837530279936'}
 2026-02-08 18:07:40,990 | INFO | valtrilabs | Posting result: {'status': 'posted', 'response': {'id': 'urn:li:share:7426242837530279936'}}
+2026-02-12 22:18:05,673 | INFO | valtrilabs.ai_provider | AI provider set to: google (env=google, param=None)
+2026-02-12 22:18:06,134 | ERROR | valtrilabs.rag | Similarity search failed
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\rag_system.py", line 56, in similarity_search
+    self.collection = self.client.get_or_create_collection(name="valtrilabs")
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\client.py", line 194, in get_or_create_collection
+    model = self._server.get_or_create_collection(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\telemetry\opentelemetry\__init__.py", line 150, in wrapper
+    return f(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\segment.py", line 103, in wrapper
+    return self._rate_limit_enforcer.rate_limit(func)(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\rate_limit\simple_rate_limit\__init__.py", line 23, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\segment.py", line 272, in get_or_create_collection
+    return self.create_collection(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\telemetry\opentelemetry\__init__.py", line 150, in wrapper
+    return f(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\segment.py", line 103, in wrapper
+    return self._rate_limit_enforcer.rate_limit(func)(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\rate_limit\simple_rate_limit\__init__.py", line 23, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\segment.py", line 226, in create_collection
+    coll, created = self._sysdb.create_collection(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\telemetry\opentelemetry\__init__.py", line 150, in wrapper
+    return f(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\db\mixins\sysdb.py", line 230, in create_collection
+    existing = self.get_collections(name=name, tenant=tenant, database=database)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\telemetry\opentelemetry\__init__.py", line 150, in wrapper
+    return f(*args, **kwargs)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\db\mixins\sysdb.py", line 456, in get_collections
+    configuration = self._load_config_from_json_str_and_migrate(
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\db\mixins\sysdb.py", line 807, in _load_config_from_json_str_and_migrate
+    return CollectionConfigurationInternal.from_json_str(json_str)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\configuration.py", line 188, in from_json_str
+    return cls.from_json(config_json)
+  File "C:\Users\bhavi\AppData\Local\Programs\Python\Python310\lib\site-packages\chromadb\api\configuration.py", line 209, in from_json
+    f"Trying to instantiate configuration of type {cls.__name__} from JSON with type {json_map['_type']}"
+KeyError: '_type'
+2026-02-12 22:18:06,138 | ERROR | valtrilabs.content_generator | Market grounding fetch failed
+Traceback (most recent call last):
+  File "C:\Users\bhavi\Documents\Linkedin Post\content_generator.py", line 40, in build_prompt
+    query_lower = (query + " " + theme).lower()
+NameError: name 'query' is not defined
+2026-02-12 22:18:06,139 | DEBUG | valtrilabs.content_generator | Prompt length: 2617
+2026-02-12 22:26:50,844 | INFO | valtrilabs.ai_provider | AI provider set to: google (env=google, param=None)
+2026-02-12 22:26:51,406 | DEBUG | valtrilabs.content_generator | Prompt length: 2290
+2026-02-12 22:27:04,510 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-12 22:27:04,510 | INFO | valtrilabs.linkedin | Test mode enabled — preview only
+Ever heard the term "Impermanent Loss" in crypto and wondered what it actually means? Here's the deal: it's a key concept for anyone providing liquidity.
+What actually happens is when you put two different tokens into a liquidity pool – a special kind of fund on a decentralized exchange – to help facilitate trading. If the price of one token changes a lot compared to the other while your assets are in the pool, you might end up with less total dollar value than if you had just held those two tokens separately.
+Think of it like this: You put in equal value of apples and oranges. If apples suddenly become much more expensive, the pool's automated system rebalances. This means you end up with more oranges and fewer apples to maintain the ratio. When you eventually pull your funds out, you might find you have fewer of those now-valuable apples than you started with. It's called 'impermanent' because if token prices return to their original ratio before you withdraw, the "loss" disappears.
+This isn't a guaranteed loss, but it's a risk when providing liquidity. Understanding this helps you make smarter decisions about participating in these pools.
+Know the risks before you jump in.
+#DeFi #Crypto #Trading #Liquidity
+2026-02-12 22:27:04,511 | INFO | valtrilabs | Posting result: {'status': 'preview', 'content': 'Ever heard the term "Impermanent Loss" in crypto and wondered what it actually means? Here\'s the deal: it\'s a key concept for anyone providing liquidity.\nWhat actually happens is when you put two different tokens into a liquidity pool – a special kind of fund on a decentralized exchange – to help facilitate trading. If the price of one token changes a lot compared to the other while your assets are in the pool, you might end up with less total dollar value than if you had just held those two tokens separately.\nThink of it like this: You put in equal value of apples and oranges. If apples suddenly become much more expensive, the pool\'s automated system rebalances. This means you end up with more oranges and fewer apples to maintain the ratio. When you eventually pull your funds out, you might find you have fewer of those now-valuable apples than you started with. It\'s called \'impermanent\' because if token prices return to their original ratio before you withdraw, the "loss" disappears.\nThis isn\'t a guaranteed loss, but it\'s a risk when providing liquidity. Understanding this helps you make smarter decisions about participating in these pools.\nKnow the risks before you jump in.\n#DeFi #Crypto #Trading #Liquidity'}
+2026-02-12 22:34:11,279 | INFO | valtrilabs.ai_provider | AI provider set to: google (env=google, param=None)
+2026-02-12 22:34:11,909 | DEBUG | valtrilabs.content_generator | Prompt length: 2290
+2026-02-12 22:34:22,563 | INFO | valtrilabs.content_generator | Saved post to data/posts.json
+2026-02-12 22:34:22,564 | INFO | valtrilabs.linkedin | Test mode enabled — preview only
+Ever wonder why crypto prices seem to be constantly moving up and down?
+Here's the deal: what actually happens is a continuous battle between people wanting to buy and people wanting to sell. When more people want to buy a crypto asset, let's say Bitcoin, than there are sellers willing to part with it at the current price, the price tends to rise.
+Conversely, if lots of folks are looking to sell their Ethereum, but not enough buyers step up, the price typically falls. What makes people decide to buy or sell? It could be anything from big news and regulatory changes to new technology updates or even broader economic trends affecting investor confidence.
+Grasping this simple supply and demand dynamic helps you better understand market shifts.
+#Crypto #Bitcoin #Ethereum #Trading #Blockchain #CryptoNews
+2026-02-12 22:34:22,564 | INFO | valtrilabs | Posting result: {'status': 'preview', 'content': "Ever wonder why crypto prices seem to be constantly moving up and down?\nHere's the deal: what actually happens is a continuous battle between people wanting to buy and people wanting to sell. When more people want to buy a crypto asset, let's say Bitcoin, than there are sellers willing to part with it at the current price, the price tends to rise.\nConversely, if lots of folks are looking to sell their Ethereum, but not enough buyers step up, the price typically falls. What makes people decide to buy or sell? It could be anything from big news and regulatory changes to new technology updates or even broader economic trends affecting investor confidence.\nGrasping this simple supply and demand dynamic helps you better understand market shifts.\n#Crypto #Bitcoin #Ethereum #Trading #Blockchain #CryptoNews"}
