@@ -4,6 +4,11 @@ import fitz  # pymupdf
 import os
 from pathlib import Path
 import logging
+try:
+    from docx import Document
+    _HAS_DOCX = True
+except Exception:
+    _HAS_DOCX = False
 
 logger = logging.getLogger("valtrilabs.pdf_processor")
 
@@ -35,6 +40,7 @@ def load_pdfs(folder: str = "data/pdfs") -> List[Tuple[str, str]]:
     if not p.exists():
         logger.warning("PDF folder does not exist: %s", folder)
         return results
+    # process PDFs
     for f in p.glob("**/*.pdf"):
         logger.info("Processing PDF: %s", f)
         text = extract_text_from_pdf(str(f))
@@ -42,6 +48,18 @@ def load_pdfs(folder: str = "data/pdfs") -> List[Tuple[str, str]]:
             logger.warning("No text extracted from %s", f)
             continue
         results.append((str(f), text))
+    # process DOCX files if python-docx available
+    if _HAS_DOCX:
+        for f in p.glob("**/*.docx"):
+            logger.info("Processing DOCX: %s", f)
+            try:
+                doc = Document(str(f))
+                paragraphs = [p.text for p in doc.paragraphs if p.text and p.text.strip()]
+                text = "\n".join(paragraphs)
+                if text:
+                    results.append((str(f), text))
+            except Exception:
+                logger.exception("Failed to extract DOCX: %s", f)
     return results
 
 
