@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Automation Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+        .card h2 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        .card label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .card input, .card select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        .card input:focus, .card select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .card input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        button.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        button.secondary:hover {
+            background: #d0d0d0;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .preview-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 13px;
+            line-height: 1.6;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .hashtags {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .hashtags span {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 11px;
+        }
+        .checklist {
+            margin-top: 15px;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .checklist-item.done {
+            color: #28a745;
+        }
+        .checklist-item.missing {
+            color: #dc3545;
+        }
+        .checklist-item::before {
+            content: '✓';
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .checklist-item.missing::before {
+            content: '✗';
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.3s;
+        }
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 LinkedIn Automation Dashboard</h1>
+            <p>Manage your AI-powered LinkedIn posting system</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('setup')">Setup</button>
+            <button class="tab-button" onclick="switchTab('generate')">Generate Post</button>
+            <button class="tab-button" onclick="switchTab('history')">Post History</button>
+            <button class="tab-button" onclick="switchTab('schedule')">Schedule Settings</button>
+        </div>
+
+        <!-- SETUP TAB -->
+        <div id="setup" class="tab-content active">
+            <div class="grid">
+                <!-- API Configuration -->
+                <div class="card">
+                    <h2>🔑 AI API Keys</h2>
+                    <label>AI Provider</label>
+                    <select id="ai_provider" onchange="updateConfig()">
+                        <option value="google">Google Gemini (Free tier)</option>
+                        <option value="openai">OpenAI GPT-4</option>
+                        <option value="claude">Anthropic Claude</option>
+                    </select>
+                    
+                    <label>Google Gemini API Key</label>
+                    <input type="password" id="google_key" placeholder="AIza..." onchange="updateConfig()">
+                    
+                    <label>Anthropic API Key</label>
+                    <input type="password" id="anthropic_key" placeholder="sk-ant-..." onchange="updateConfig()">
+                    
+                    <button onclick="testApi()">
+                        <span id="api-spinner"></span>
+                        Test API Connection
+                    </button>
+                    <div id="api-status"></div>
+                </div>
+
+                <!-- LinkedIn Configuration -->
+                <div class="card">
+                    <h2>💼 LinkedIn Credentials</h2>
+                    <label>Access Token</label>
+                    <input type="password" id="linkedin_token" placeholder="AQUK..." onchange="updateConfig()">
+                    <small style="color: #999; display: block; margin: -8px 0 10px;">
+                        <a href="https://www.linkedin.com/developers/" target="_blank" style="color: #667eea;">Get credentials here</a>
+                    </small>
+                    
+                    <label>Your LinkedIn ID</label>
+                    <input type="text" id="linkedin_id" placeholder="vvQE2g2rkz" onchange="updateConfig()">
+                    
+                    <button onclick="testLinkedIn()">
+                        <span id="linkedin-spinner"></span>
+                        Test LinkedIn Connection
+                    </button>
+                    <div id="linkedin-status"></div>
+                </div>
+
+                <!-- Content Configuration -->
+                <div class="card">
+                    <h2>📝 Content Settings</h2>
+                    <label>Content Profile</label>
+                    <select id="content_profile" onchange="updateConfig()">
+                        <option value="arab_global_crypto">Arab Global Crypto</option>
+                        <option value="valtrilabs">ValtriLabs</option>
+                    </select>
+                    
+                    <label>Minimum Post Length</label>
+                    <input type="number" id="min_length" value="150" onchange="updateConfig()">
+                    
+                    <label>Maximum Post Length</label>
+                    <input type="number" id="max_length" value="1000" onchange="updateConfig()">
+                    
+                    <label style="display: flex; align-items: center;">
+                        <input type="checkbox" id="market_grounding" onchange="updateConfig()">
+                        Enable Market Data in Posts
+                    </label>
+                </div>
+
+                <!-- Setup Checklist -->
+                <div class="card full-width">
+                    <h2>✅ Setup Checklist</h2>
+                    <div class="checklist">
+                        <div class="checklist-item" id="check-api">✓ AI API Key configured</div>
+                        <div class="checklist-item" id="check-linkedin">✓ LinkedIn credentials configured</div>
+                        <div class="checklist-item" id="check-profile">✓ Content profile selected</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GENERATE TAB -->
+        <div id="generate" class="tab-content">
+            <div class="grid">
+                <div class="card full-width">
+                    <h2>🎯 Generate Preview Post</h2>
+                    <button onclick="generatePreview()" style="width: 100%; padding: 12px;">
+                        <span id="gen-spinner"></span>
+                        Generate Post Preview
+                    </button>
+                    <div id="gen-status"></div>
+                    <div id="preview" class="preview-box" style="display: none;">
+                        <strong>Generated Post:</strong>
+                        <div id="preview-content" style="margin-top: 10px; font-style: italic;"></div>
+                        <div id="preview-hashtags" class="hashtags"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY TAB -->
+        <div id="history" class="tab-content">
+            <div class="grid">
+                <div class="card full-width">
+                    <h2>📜 Recent Posts</h2>
+                    <button onclick="loadPosts()" style="width: 100%;">Load Post History</button>
+                    <div id="posts-list" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCHEDULE TAB -->
+        <div id="schedule" class="tab-content">
+            <div class="grid">
+                <div class="card">
+                    <h2>⏰ Posting Schedule</h2>
+                    <label>Post Time (Hour)</label>
+                    <input type="number" id="post_hour" min="0" max="23" value="11" onchange="updateConfig()">
+                    
+                    <label>Post Time (Minute)</label>
+                    <input type="number" id="post_minute" min="0" max="59" value="0" onchange="updateConfig()">
+                    
+                    <label>Timezone</label>
+                    <select id="timezone" onchange="updateConfig()">
+                        <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                        <option value="America/New_York">America/New_York (EST)</option>
+                        <option value="Europe/London">Europe/London (GMT)</option>
+                        <option value="Asia/Singapore">Asia/Singapore (SGT)</option>
+                    </select>
+                </div>
+
+                <div class="card">
+                    <h2>🔄 Deployment Mode</h2>
+                    <label style="display: flex; align-items: center;">
+                        <input type="checkbox" id="test_mode" onchange="updateConfig()">
+                        Test Mode (Preview only, don't actually post)
+                    </label>
+                    <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                        When disabled, posts will be automatically published to LinkedIn at the scheduled time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('/api/config');
+                const config = await response.json();
+                
+                document.getElementById('ai_provider').value = config.AI_PROVIDER;
+                document.getElementById('google_key').value = config.GOOGLE_API_KEY;
+                document.getElementById('anthropic_key').value = config.ANTHROPIC_API_KEY;
+                document.getElementById('linkedin_token').value = config.LINKEDIN_ACCESS_TOKEN;
+                document.getElementById('linkedin_id').value = config.LINKEDIN_PERSON_ID;
+                document.getElementById('content_profile').value = config.CONTENT_PROFILE;
+                document.getElementById('min_length').value = config.MIN_POST_LENGTH;
+                document.getElementById('max_length').value = config.MAX_POST_LENGTH;
+                document.getElementById('market_grounding').checked = config.ENABLE_MARKET_GROUNDING;
+                document.getElementById('post_hour').value = config.POST_TIME_HOUR;
+                document.getElementById('post_minute').value = config.POST_TIME_MINUTE;
+                document.getElementById('timezone').value = config.TIMEZONE;
+                document.getElementById('test_mode').checked = config.TEST_MODE;
+                
+                updateChecklist();
+            } catch (e) {
+                console.error('Failed to load config:', e);
+            }
+        }
+
+        function updateChecklist() {
+            const apiKey = document.getElementById('google_key').value || document.getElementById('anthropic_key').value;
+            const linkedinToken = document.getElementById('linkedin_token').value;
+            const linkedinId = document.getElementById('linkedin_id').value;
+            
+            document.getElementById('check-api').className = 'checklist-item ' + (apiKey ? 'done' : 'missing');
+            document.getElementById('check-linkedin').className = 'checklist-item ' + (linkedinToken && linkedinId ? 'done' : 'missing');
+            document.getElementById('check-profile').className = 'checklist-item done';
+        }
+
+        async function updateConfig() {
+            const config = {
+                AI_PROVIDER: document.getElementById('ai_provider').value,
+                GOOGLE_API_KEY: document.getElementById('google_key').value,
+                ANTHROPIC_API_KEY: document.getElementById('anthropic_key').value,
+                LINKEDIN_ACCESS_TOKEN: document.getElementById('linkedin_token').value,
+                LINKEDIN_PERSON_ID: document.getElementById('linkedin_id').value,
+                CONTENT_PROFILE: document.getElementById('content_profile').value,
+                MIN_POST_LENGTH: parseInt(document.getElementById('min_length').value),
+                MAX_POST_LENGTH: parseInt(document.getElementById('max_length').value),
+                ENABLE_MARKET_GROUNDING: document.getElementById('market_grounding').checked,
+                POST_TIME_HOUR: parseInt(document.getElementById('post_hour').value),
+                POST_TIME_MINUTE: parseInt(document.getElementById('post_minute').value),
+                TIMEZONE: document.getElementById('timezone').value,
+                TEST_MODE: document.getElementById('test_mode').checked
+            };
+
+            await fetch('/api/config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(config)
+            });
+            
+            updateChecklist();
+        }
+
+        async function testApi() {
+            document.getElementById('api-spinner').innerHTML = '<span class="spinner"></span>';
+            const response = await fetch('/api/test-api', { method: 'POST' });
+            const result = await response.json();
+            document.getElementById('api-spinner').innerHTML = '';
+            const statusDiv = document.getElementById('api-status');
+            statusDiv.className = 'status ' + (result.success ? 'success' : 'error');
+            statusDiv.textContent = result.message;
+        }
+
+        async function testLinkedIn() {
+            document.getElementById('linkedin-spinner').innerHTML = '<span class="spinner"></span>';
+            const response = await fetch('/api/test-linkedin', { method: 'POST' });
+            const result = await response.json();
+            document.getElementById('linkedin-spinner').innerHTML = '';
+            const statusDiv = document.getElementById('linkedin-status');
+            statusDiv.className = 'status ' + (result.success ? 'success' : 'error');
+            statusDiv.textContent = result.message;
+        }
+
+        async function generatePreview() {
+            document.getElementById('gen-spinner').innerHTML = '<span class="spinner"></span>';
+            document.getElementById('gen-status').textContent = 'Generating...';
+            
+            try {
+                const response = await fetch('/api/generate-preview');
+                const result = await response.json();
+                
+                document.getElementById('gen-spinner').innerHTML = '';
+                
+                if (result.success) {
+                    document.getElementById('gen-status').className = 'status success';
+                    document.getElementById('gen-status').textContent = '✓ Post generated successfully!';
+                    document.getElementById('preview-content').textContent = result.post;
+                    document.getElementById('preview-hashtags').innerHTML = result.hashtags.map(tag => `<span>${tag}</span>`).join('');
+                    document.getElementById('preview').style.display = 'block';
+                } else {
+                    document.getElementById('gen-status').className = 'status error';
+                    document.getElementById('gen-status').textContent = '✗ ' + result.message;
+                }
+            } catch (e) {
+                document.getElementById('gen-spinner').innerHTML = '';
+                document.getElementById('gen-status').className = 'status error';
+                document.getElementById('gen-status').textContent = '✗ Error: ' + e.message;
+            }
+        }
+
+        async function loadPosts() {
+            const response = await fetch('/api/posts');
+            const result = await response.json();
+            
+            if (result.posts.length === 0) {
+                document.getElementById('posts-list').innerHTML = '<p style="color: #999;">No posts generated yet.</p>';
+                return;
+            }
+
+            const html = result.posts.map(post => `
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #667eea;">
+                    <div style="font-size: 12px; color: #999; margin-bottom: 8px;">
+                        ${new Date(post.created_at).toLocaleString()}
+                    </div>
+                    <div style="font-size: 13px; line-height: 1.6; margin-bottom: 10px;">${post.content}</div>
+                    <div style="font-size: 11px; color: #667eea;">
+                        ${post.hashtags.join(' ')}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('posts-list').innerHTML = html;
+        }
+
+        // Load config on page load
+        loadConfig();
+    </script>
+</body>
+</html>
